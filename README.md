@@ -1,6 +1,6 @@
 # Moodle PDF Merger
 
-A lightweight, powerful Google Chrome extension designed to help students easily download and merge multiple PDF resources from Moodle into a single file. 
+A lightweight, powerful Google Chrome extension designed to help HUJI University students easily download and merge multiple PDF resources from Moodle into a single file. 
 
 ## ✨ Features
 * **Auto-Grab URLs:** Instantly pull PDF links from any open Moodle tabs with the click of a button. No tedious copy-pasting required!
