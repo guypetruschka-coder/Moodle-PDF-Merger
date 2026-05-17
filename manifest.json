@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Moodle PDF Merger",
+  "version": "1.0",
+  "description": "Extracts and merges PDFs directly from Moodle URLs.",
+  "permissions": [
+    "downloads",
+    "sidePanel",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.huji.ac.il/*"
+  ],
+  "side_panel": {
+    "default_path": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_title": "Moodle PDF Merger",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  }
+}

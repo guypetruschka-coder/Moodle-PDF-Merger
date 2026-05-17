@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      width: 320px;
+      padding: 20px;
+      background-color: #0d1117; 
+      color: #c9d1d9; 
+      margin: 0;
+    }
+    h2 {
+      font-size: 18px;
+      margin-top: 0;
+      color: #e6edf3;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .editor-container {
+      display: flex;
+      width: 100%;
+      height: 140px;
+      background-color: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .editor-container:focus-within { border-color: #58a6ff; }
+    
+    #lineNumbers {
+      padding: 10px 8px;
+      background-color: #0d1117;
+      color: #484f58;
+      text-align: right;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 11px;
+      line-height: 1.6;
+      user-select: none;
+      border-right: 1px solid #30363d;
+      min-width: 20px;
+      overflow: hidden; 
+    }
+    textarea {
+      flex-grow: 1;
+      height: 100%;
+      padding: 10px;
+      background-color: transparent;
+      border: none;
+      color: #e6edf3;
+      box-sizing: border-box;
+      font-size: 11px;
+      line-height: 1.6; 
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      resize: none;
+      outline: none;
+      white-space: pre; 
+      overflow-x: auto;
+    }
+    
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      color: #e6edf3;
+      box-sizing: border-box;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    input[type="text"]:focus { border-color: #58a6ff; }
+    
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    #mergeBtn { background-color: #238636; color: white; }
+    #mergeBtn:hover:not(:disabled) { background-color: #2ea043; }
+    #mergeBtn:disabled { background-color: #1e3a24; color: #8b949e; cursor: not-allowed; }
+    
+    #cancelBtn { background-color: #da3633; color: white; display: none; }
+    #cancelBtn:hover:not(:disabled) { background-color: #f85149; }
+    #cancelBtn:disabled { background-color: #490c0c; color: #8b949e; cursor: not-allowed; }
+    
+    /* --- NEW PROGRESS BAR STYLES --- */
+    #progressContainer {
+      width: 100%;
+      height: 8px;
+      background-color: #30363d;
+      border-radius: 4px;
+      margin-top: 15px;
+      overflow: hidden;
+      display: none; /* Hidden until you click download */
+    }
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background-color: #2ea043; /* Clean green fill */
+      transition: width 0.4s ease, background-color 0.3s ease;
+    }
+    
+    #status {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #8b949e;
+      text-align: center;
+      min-height: 20px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <h2>⚡ Moodle Merger</h2>
+  <p style="font-size: 12px; color: #8b949e; margin-top: -10px; margin-bottom: 16px; line-height: 1.4;">
+    1. Open Moodle PDFs in new tabs.<br>
+    2. Click <b>Grab URLs</b>.<br>
+    3. Click <b>Download</b> to merge!
+  </p>
+  
+  <input type="text" id="filenameInput" placeholder="Custom filename (optional)...">
+  
+  <div class="editor-container">
+    <div id="lineNumbers">1</div>
+    <textarea id="urlInput" wrap="off" placeholder="Paste URLs here..."></textarea>
+  </div>
+  
+  <div class="button-group" style="margin-bottom: 12px;">
+    <button id="scanBtn" style="background-color: #1f6feb; color: white;">🔍 Grab URLs from Open Tabs</button>
+  </div>
+  
+  <div class="button-group">
+    <button id="mergeBtn">Download</button>
+    <button id="cancelBtn" disabled>Abort</button>
+  </div>
+  
+  <div id="progressContainer">
+    <div id="progressBar"></div>
+  </div>
+  
+  <div id="status"></div>
+
+  <script src="pdf-lib.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
