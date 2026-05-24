@@ -78,6 +78,49 @@
     }
     input[type="text"]:focus { border-color: #58a6ff; }
     
+    .file-input-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    .file-input-wrapper input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+      height: 100%;
+    }
+    .btn-outline {
+      border: 1px dashed #30363d;
+      color: #8b949e;
+      background-color: transparent;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      text-align: center;
+      cursor: pointer;
+      display: block;
+      transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .file-input-wrapper:hover .btn-outline {
+      border-color: #8b949e;
+      color: #c9d1d9;
+    }
+    #fileNameDisplay {
+      font-size: 11px;
+      color: #58a6ff;
+      margin-top: -8px;
+      margin-bottom: 12px;
+      display: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
     .button-group {
       display: flex;
       gap: 10px;
@@ -136,6 +179,12 @@
   </p>
   
   <input type="text" id="filenameInput" placeholder="Custom filename (optional)...">
+  
+  <div class="file-input-wrapper">
+    <div class="btn-outline">📎 Attach Existing PDF (Optional)</div>
+    <input type="file" id="existingPdfInput" accept="application/pdf">
+  </div>
+  <div id="fileNameDisplay"></div>
   
   <div class="editor-container">
     <div id="lineNumbers">1</div>

@@ -4,7 +4,9 @@ A lightweight, powerful Google Chrome extension designed to help HUJI University
 
 ## ✨ Features
 * **Auto-Grab URLs:** Instantly pull PDF links from any open Moodle tabs with the click of a button. No tedious copy-pasting required!
-* **Seamless Merging:** Automatically downloads and merges all selected PDFs into one clean `Merged_Moodle_Documents.pdf` file.
+* **Seamless Merging:** Automatically downloads and merges all selected PDFs into one clean file.
+* **Custom Filenames:** Specify exactly what you want your merged file to be called.
+* **Attach Existing PDFs:** Append newly downloaded lectures directly to the end of a previously downloaded PDF document!
 * **Smart Authentication:** If you hit a Moodle login wall, the extension intelligently pauses, lets you log in securely, and resumes the download.
 * **Developer-Friendly UI:** A sleek dark-mode interface featuring a code-editor style text area with line numbers.
 

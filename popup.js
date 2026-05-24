@@ -10,6 +10,17 @@ textarea.addEventListener('input', updateLineNumbers);
 textarea.addEventListener('scroll', () => { lineNumbers.scrollTop = textarea.scrollTop; });
 updateLineNumbers();
 
+// --- EXISTING PDF UI LOGIC ---
+document.getElementById('existingPdfInput').addEventListener('change', (e) => {
+    const fileDisplay = document.getElementById('fileNameDisplay');
+    if (e.target.files.length > 0) {
+        fileDisplay.innerText = `Selected: ${e.target.files[0].name}`;
+        fileDisplay.style.display = 'block';
+    } else {
+        fileDisplay.style.display = 'none';
+    }
+});
+
 // --- AUTO-GRAB LOGIC ---
 document.getElementById('scanBtn').addEventListener('click', async () => {
     // Query all tabs
@@ -80,7 +91,17 @@ document.getElementById('mergeBtn').addEventListener('click', async () => {
     
     try {
         const { PDFDocument } = PDFLib;
-        const masterPdf = await PDFDocument.create();
+        let masterPdf;
+        const existingFileInput = document.getElementById('existingPdfInput');
+        
+        if (existingFileInput.files.length > 0) {
+            statusEl.innerText = "Loading existing PDF...";
+            const file = existingFileInput.files[0];
+            const arrayBuffer = await file.arrayBuffer();
+            masterPdf = await PDFDocument.load(arrayBuffer);
+        } else {
+            masterPdf = await PDFDocument.create();
+        }
 
         for (let i = 0; i < urls.length; i++) {
             let success = false;
